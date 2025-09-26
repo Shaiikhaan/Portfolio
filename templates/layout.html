@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ title or 'Ahmed Shaikhaan | Portfolio' }}</title>
+    <meta name="description" content="Portfolio of Ahmed Shaikhaan - minimalist, high-focus portfolio." />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <!-- Cursor light overlay -->
+    <div class="cursor-light" aria-hidden="true"></div>
+
+    <div class="split">
+      <!-- Left Sidebar -->
+      <aside class="sidebar">
+        <div class="sidebar__inner">
+          <a href="#about" class="sidebar__brand">Ahmed<br/>Shaikhaan</a>
+          <p class="sidebar__role">Video Game Developer</p>
+          <p class="sidebar__blurb">An experimental space where I explore design, code, and systems with a minimalist approach.</p>
+
+          <nav class="sidebar__nav">
+            <a href="#about" class="nav__link">About</a>
+            <a href="#experience" class="nav__link">Experience</a>
+            <a href="#projects" class="nav__link">Projects</a>
+            <a href="#contact" class="nav__link">Contact</a>
+          </nav>
+
+          <div class="sidebar__contacts">
+            <a href="#" class="link">GitHub</a>
+            <a href="#" class="link">LinkedIn</a>
+            <a href="mailto:someone@example.com" class="link">Email</a>
+          </div>
+
+          <p class="sidebar__foot">© <span id="year"></span></p>
+        </div>
+      </aside>
+
+      <!-- Right Content -->
+      <main class="content" id="top">
+        <div class="content__inner">
+          {% block content %}{% endblock %}
+        </div>
+      </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+  </body>
+</html>

@@ -1,0 +1,230 @@
+/* ==========================
+   Base Theme & Variables
+   ========================== */
+:root {
+  --bg: #0b0f17;
+  /* Softer, background-matching text palette */
+  --text-strong: #c8d2ea; /* headings/name (reduced contrast) */
+  --text: #aab7d2;       /* body (closer to bg) */
+  --muted: #7f8aa3;      /* captions/nav */
+  --accent: #a78bfa;
+  --primary: #6ee7ff;
+  --border: #1f2937;
+  --shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+  --radius: 12px;
+  --sidebar-w: 50vw;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: 'Space Grotesk', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.6;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+
+/* Right pane content container should fit within 50vw */
+.container { width: min(680px, 90%); margin: 0 auto; }
+
+/* ==========================
+   Minimalist Split Layout
+   ========================== */
+.split { display: contents; }
+.sidebar {
+  position: fixed; inset: 0 auto 0 0; width: var(--sidebar-w);
+  padding: 48px 48px; display: grid; place-items: start; overflow-y: auto;
+  background: transparent;
+}
+.sidebar__inner { display: grid; gap: 18px; align-content: start; }
+.sidebar__brand {
+  font-weight: 500; font-size: 36px; line-height: 1.05; letter-spacing: 0.6px;
+  color: var(--text-strong);
+}
+.sidebar__role { color: var(--muted); margin-top: 4px; }
+.sidebar__blurb { color: var(--muted); margin: 4px 0 8px; }
+.sidebar__nav { display: grid; gap: 10px; margin-top: 16px; }
+.sidebar__nav .nav__link {
+  color: var(--muted); padding: 6px 0; font-weight: 500; letter-spacing: 0.08em;
+  text-transform: uppercase; font-size: 12px; display: inline-flex; align-items: center;
+}
+.sidebar__nav .nav__link::before {
+  content: ""; display: inline-block; width: 28px; height: 2px; background: rgba(255,255,255,0.08);
+  margin-right: 12px; transition: background .2s ease, width .2s ease;
+}
+.sidebar__nav .nav__link:hover { color: var(--text); }
+.sidebar__nav .nav__link.is-active { color: var(--text); }
+.sidebar__nav .nav__link.is-active::before { background: var(--primary); width: 36px; }
+.sidebar__contacts { display: flex; gap: 12px; margin-top: 6px; }
+.sidebar__foot { color: var(--muted); margin-top: 8px; font-size: 14px; }
+
+.content { margin-left: var(--sidebar-w); width: calc(100vw - var(--sidebar-w)); }
+.content__inner { width: 100%; margin: 0 auto; padding: 64px 0; }
+
+/* Reuse the link style name for sidebar navigation */
+.nav__link { color: var(--muted); transition: color .15s ease; }
+.nav__link:hover { color: var(--text); }
+.nav__link.is-active { color: var(--primary); }
+
+/* ==========================
+   Sections & Typography
+   ========================== */
+.section { padding: 64px 0; }
+.section--alt { background: transparent; }
+.section__title {
+  font-size: 24px;
+  margin: 0 0 22px;
+  letter-spacing: 0.07em;
+  font-weight: 500;
+  color: var(--text-strong);
+}
+.title {
+  font-size: clamp(34px, 5vw, 52px);
+  line-height: 1.06;
+  margin: 0 0 10px;
+  letter-spacing: 0.02em;
+  font-weight: 500; /* softer */
+  color: var(--text-strong);
+}
+.subtitle { color: var(--muted); font-size: 18px; margin: 0 0 22px; }
+.muted { color: var(--muted); }
+
+/* Paragraph readability tweaks */
+.content .container p {
+  letter-spacing: 0.005em;
+  line-height: 1.75;
+}
+
+/* Headings smoothing */
+.content .container h2, .content .container h3 {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+}
+
+/* ==========================
+   Hero
+   ========================== */
+.hero { padding-top: 24px; padding-bottom: 48px; }
+.hero__content { display: grid; grid-template-columns: 1fr; align-items: center; gap: 28px; }
+.hero__text { max-width: 780px; }
+.cta { display: flex; gap: 12px; }
+
+/* ==========================
+   Buttons & Links
+   ========================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: #0f1420;
+  color: var(--text);
+  box-shadow: var(--shadow);
+  transition: transform .15s ease, background .2s ease, border-color .2s ease;
+}
+.btn:hover { transform: translateY(-1px); border-color: rgba(110,231,255,0.35); }
+.btn--primary { background: linear-gradient(135deg, var(--primary), var(--accent)); color: #0b0f17; border: none; }
+.btn--primary:hover { filter: brightness(1.05); }
+.btn--ghost { background: transparent; }
+.link { color: var(--primary); font-weight: 500; }
+.link:hover { text-decoration: underline; }
+
+/* ==========================
+   Grid & Cards
+   ========================== */
+.grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+.card {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  overflow: hidden;
+  transition: transform .2s ease;
+}
+.card:hover { transform: translateY(-2px); }
+.card__body { padding: 18px; }
+.card__title { margin: 0 0 8px; font-size: 20px; }
+.card__text { margin: 0 0 14px; color: var(--muted); }
+.card__footer { display: flex; gap: 14px; padding: 0 18px 18px; }
+
+/* ==========================
+   Timeline (Experience)
+   ========================== */
+.timeline { position: relative; display: grid; gap: 16px; }
+.timeline::before { content: ""; position: absolute; left: 10px; top: 6px; bottom: 6px; width: 2px; background: var(--border); }
+.timeline__item { position: relative; padding-left: 28px; }
+.timeline__item::before { content: ""; position: absolute; left: 5px; top: 8px; width: 12px; height: 12px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 3px rgba(167,139,250,0.2); }
+.timeline__head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 6px; }
+
+/* ==========================
+   Chips
+   ========================== */
+.chips { list-style: none; display: flex; flex-wrap: wrap; gap: 10px; padding: 0; margin: 0; }
+.chip { padding: 8px 12px; border: 1px solid var(--border); background: #0f1420; border-radius: 999px; color: var(--muted); }
+
+/* ==========================
+   Forms
+   ========================== */
+.form { display: grid; gap: 12px; }
+.form__row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.input, .textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: #0f1420;
+  color: var(--text);
+}
+.input:focus, .textarea:focus { outline: 2px solid rgba(167,139,250,0.35); border-color: rgba(167,139,250,0.55); }
+
+/* ==========================
+   Footer & Utilities
+   ========================== */
+/* Footer removed in minimalist split; use sidebar foot */
+
+/* ==========================
+   Reveal on Scroll
+   ========================== */
+.reveal { opacity: 0; transform: translateY(12px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+/* ==========================
+   Cursor-following Light
+   ========================== */
+.cursor-light {
+  position: fixed; left: 0; top: 0; width: 380px; height: 380px; pointer-events: none;
+  border-radius: 50%; transform: translate(-50%, -50%);
+  background: radial-gradient(circle at center, rgba(110,231,255,0.22), rgba(167,139,250,0.10) 35%, rgba(11,15,23,0) 65%);
+  mix-blend-mode: screen; opacity: 0.75; filter: blur(6px);
+  will-change: transform;
+  transition: opacity .2s ease;
+}
+@media (max-width: 640px) {
+  .cursor-light { width: 260px; height: 260px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; }
+}
+
+/* ==========================
+   Responsive
+   ========================== */
+@media (max-width: 900px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .sidebar { position: static; width: auto; border-right: 0; padding: 20px 16px; }
+  .content { margin-left: 0; }
+  .content__inner { padding: 28px 0; }
+  .form__row { grid-template-columns: 1fr; }
+  .grid { grid-template-columns: 1fr; }
+}
